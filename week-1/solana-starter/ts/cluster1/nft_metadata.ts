@@ -11,35 +11,37 @@ const signer = createSignerFromKeypair(umi, keypair);
 
 umi.use(irysUploader());
 umi.use(signerIdentity(signer));
-
 (async () => {
     try {
         // Follow this JSON structure
         // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
-        // const image = ???
-        // const metadata = {
-        //     name: "?",
-        //     symbol: "?",
-        //     description: "?",
-        //     image: "?",
-        //     attributes: [
-        //         {trait_type: '?', value: '?'}
-        //     ],
-        //     properties: {
-        //         files: [
-        //             {
-        //                 type: "image/png",
-        //                 uri: "?"
-        //             },
-        //         ]
-        //     },
-        //     creators: []
-        // };
-        // const myUri = ???
-        // console.log("Your metadata URI: ", myUri);
+        const image = "https://devnet.irys.xyz/3Xe1rGk7uXBFa8TqSnQDtX5RzYMGTRzJQfmESdj8A1L5"
+        const metadata = {
+            name: "SuperRareRug",
+            symbol: "SRG",
+            description: "The rarest rug in the universe",
+            image,
+            attributes: [
+                {trait_type: 'rarity', value: 'SuperMegaUltraRare'}
+            ],
+            properties: {
+                files: [
+                    {
+                        type: "image/png",
+                        uri: image
+                    },
+                ]
+            },
+            creators: []
+        };
+
+        const myUri = await umi.uploader.uploadJson(metadata);
+        console.log("Your metadata URI: ", myUri);
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
     }
 })();
+
+//https://devnet.irys.xyz/9HC7R7fjGbR5oWoAsqnTRRiJSEgWrktdaHp41is5EfHT
