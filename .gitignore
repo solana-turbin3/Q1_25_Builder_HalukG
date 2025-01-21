@@ -4,5 +4,9 @@ target
 yarn.lock
 package-lock
 Cargo.lock
+test-ledger
 .DS_Store
 .vscode
+.anchor
+**/*.rs.bk
+.yarn
